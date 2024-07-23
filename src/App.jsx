@@ -30,7 +30,6 @@ const App = () => {
     }
   ])
   return <>
-    <h1>Testing</h1>
     <RouterProvider router={router}></RouterProvider>
   </>
 
