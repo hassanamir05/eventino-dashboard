@@ -1,7 +1,11 @@
 import React from "react";
 
 const Dashboard = () => {
-    return <h1>Dashboard</h1>
+    return (
+        <form action="#" className="grid">
+
+        </form>
+    );
 }
 
 export default Dashboard;

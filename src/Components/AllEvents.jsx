@@ -1,8 +1,10 @@
 import React from "react";
 import WelcomeMsg from "./WelcomeMsg";
-import SearchBox from "./SearchBox";
+import SearchBox from './SearchBox'
 import Table from "./Table";
 import Filter from "./Filter";
+import AddEventForm from "./addEventForm";
+import DateInput from "./DateInput";
 
 const eventData = [
     {
@@ -25,7 +27,7 @@ const eventData = [
         status: "Paid",
         statusColor: "bg-paidColor"
     },
-    // ... more events
+
 ];
 
 const filterOptions = [
@@ -55,9 +57,10 @@ const monthOptions = [
 
 const AllEvents = () => {
     return (
-        <div className="flex flex-col py-10 px-10 w-full h-screen bg-backgroundColor">
+        <div className="flex flex-col py-10 px-10 w-full h-auto min-h-screen bg-backgroundColor">
             <WelcomeMsg />
             <SearchBox />
+            <AddEventForm />
             <div>
                 <div className="flex flex-col bg-white border-0 rounded-md p-5 py-10 my-5">
                     <div className="flex justify-between">

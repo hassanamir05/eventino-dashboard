@@ -7,7 +7,6 @@ const Table = ({ eventData }) => {
         <>
             <style>
                 {`
-            
                 ::-webkit-scrollbar {
                     height: 8px;
                 }

@@ -1,7 +1,7 @@
 import React from "react";
-import Dashboard from "./Components/Dashboard";
+import Dashboard from './Components/Dashboard'
 import CelebrityEvent from "./Components/CelebrityEvent";
-import AllEvents from "./Components/AllEvents";
+import AllEvents from "./Components/allEvents";
 import EventOrganizer from "./Components/EventOrganizer";
 import { BrowserRouter, createBrowserRouter, RouterProvider } from "react-router-dom";
 

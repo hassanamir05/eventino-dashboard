@@ -1,4 +1,5 @@
-export default {
+// tailwind.config.js
+module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -7,9 +8,9 @@ export default {
         backgroundColor: "#F0F1F5",
         freeColor: "#00B69B",
         paidColor: "#FCBE2D",
+        inputBackground: " #DADADA",
       },
     },
   },
-
   plugins: [],
 };
