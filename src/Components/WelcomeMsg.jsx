@@ -1,5 +1,5 @@
 const WelcomeMsg = () => {
-    return <div className="w-full mb-10">
+    return <div className="w-full mb-10 ">
         <h1 style={{ fontFamily: 'Inter, sans-serif' }}
             className="flex text-2xl text-black"
         >

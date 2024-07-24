@@ -12,25 +12,37 @@ const ImageInput = () => {
             }
             reader.readAsDataURL(input.files[0]);
         }
-    }
+    };
+
+    const deleteImage = () => {
+        setImageSrc(null);
+    };
 
     return (
-        <div className="w-[400px] bg-transparent h-auto mx-2 my-2 relative" >
-            <div className="w-[400px] rounded-lg h-[170px] border-gray-300 flex items-center justify-center bg-inputBackground">
+        <div className="w-[380px] bg-transparent h-auto mx-2 my-2 relative">
+            <div className="w-[380px] rounded-lg h-[170px] border-gray-300 flex items-center justify-center bg-inputBackground relative">
                 <input
                     type="file"
                     accept="image/*"
                     className="absolute inset-0 opacity-0 cursor-pointer"
                     onChange={displayImage}
-                    onClick={(e) => { e.stopPropagation(); }} // Prevents click propagation
-                    onMouseEnter={(e) => { e.target.style.cursor = 'pointer'; }} // Changes cursor on hover
+                    onClick={(e) => { e.stopPropagation(); }}
+                    onMouseEnter={(e) => { e.target.style.cursor = 'pointer'; }}
                 />
                 {imageSrc ? (
-                    <img
-                        src={imageSrc}
-                        alt="Selected"
-                        className="w-full h-full object-cover rounded-lg"
-                    />
+                    <>
+                        <img
+                            src={imageSrc}
+                            alt="Selected"
+                            className="w-full h-full object-cover rounded-lg"
+                        />
+                        <button
+                            className="absolute top-2 right-2 bg-white text-red-500 p-1 px-2 rounded-full focus:outline-none"
+                            onClick={deleteImage}
+                        >
+                            <i className="fa-solid fa-trash"></i>
+                        </button>
+                    </>
                 ) : (
                     <div className="flex flex-col items-center">
                         <img className='h-6' src='/src/assets/uploadIcon.png' alt="Upload Icon" />
@@ -38,7 +50,7 @@ const ImageInput = () => {
                     </div>
                 )}
             </div>
-        </div >
+        </div>
     );
 }
 

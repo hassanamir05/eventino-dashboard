@@ -9,6 +9,7 @@ module.exports = {
         freeColor: "#00B69B",
         paidColor: "#FCBE2D",
         inputBackground: " #DADADA",
+        sideBarColor: " #4CA1EB",
       },
     },
   },

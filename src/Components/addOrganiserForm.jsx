@@ -23,27 +23,21 @@ const monthOptions = [
     "December"
 ];
 
-const AddEventForm = (props) => {
+const AddOrganiserForm = (props) => {
     return (
         <>
             <Heading title={props.title} />
             <div class="flex flex-wrap justify-center bg-white rounded-lg w-auto ">
-                <div class="flex flex-col items-center px-0 py-7 mx-5 w-auto">
+                <div class="flex flex-col items-center  py-7 mx-5 w-auto">
                     <ImageInput />
-                    <Input heading="Event Title" />
-                    <DateInput heading="Date" />
-                    <Input heading="Venue" />
-                    <DropdownInput events={monthOptions} heading="Region" />
-                    <DropdownInput events={monthOptions} heading="Category" />
-                    <Input heading="Map Location" />
-
+                    <Input heading="Organiser Name" />
+                    <DateInput heading="Availability" />
+                    <Input heading="Contact Number" />
                 </div>
 
                 <div class=" flex  flex-col  px-5 py-7 mx-5 ">
-                    <Input heading="Price" />
-                    <DropdownInput events={monthOptions} heading="Ticket Link" />
-                    <DropdownInput events={monthOptions} heading="Popular Events" />
-                    <MultilinedInput heading="Description" rows={5} />
+                    <MultilinedInput heading="About" rows={7} />
+                    <Input heading="Map Location" />
                     <div className="wrapper flex justify-end w-[380px]">
                         <Button className="" name="Save " />
                     </div>
@@ -54,4 +48,4 @@ const AddEventForm = (props) => {
     );
 };
 
-export default AddEventForm;
+export default AddOrganiserForm;

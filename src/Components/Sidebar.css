@@ -1,0 +1,48 @@
+.active {
+  background: #fff;
+  width: 230px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.not-active {
+  background: transparent;
+  width: 230px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.active-font {
+  background-image: linear-gradient(rgb(26, 118, 237), rgb(207, 29, 207));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: lighter;
+  position: relative;
+}
+
+.active::before {
+  content: "";
+  background-image: url("/src/assets/Icons/rectangle.png");
+  height: 34px;
+  width: 4px;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: -1px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  margin-bottom: 3px;
+}
+
+.logout-txt {
+  background-image: linear-gradient(rgb(26, 118, 237), rgb(207, 29, 207));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: -2px;
+}
+
+/* background */
+/* background-color */
+/* background-image */

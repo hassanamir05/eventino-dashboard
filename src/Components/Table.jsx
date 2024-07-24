@@ -2,10 +2,10 @@ import React from "react";
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
 
-const Table = ({ eventData }) => {
+const Table = ({ columns, eventData }) => {
     return (
         <>
-            <style>
+            {/* <style>
                 {`
                 ::-webkit-scrollbar {
                     height: 8px;
@@ -24,15 +24,15 @@ const Table = ({ eventData }) => {
                     background: #555;
                 }
                 `}
-            </style>
+            </style> */}
             <div className="overflow-x-auto custom-scrollbar">
                 <table className="min-w-full bg-white border-lg border-gray-200 rounded-lg shadow-md">
                     <thead className="mb-[10px]">
-                        <TableHeader />
+                        <TableHeader columns={columns} />
                     </thead>
                     <tbody className="text-gray-600 text-sm font-light">
                         {eventData.map((event, index) => (
-                            <TableRow key={index} event={event} />
+                            <TableRow key={index} event={event} columns={columns} />
                         ))}
                     </tbody>
                 </table>
