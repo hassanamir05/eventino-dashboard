@@ -25,8 +25,8 @@ const monthOptions = [
 const AddEventForm = () => {
     return (
         <>
-            <div class="flex flex-wrap justify-center items-center bg-white rounded-lg ">
-                <div class="flex flex-col items-center  px-5 py-7 mx-5">
+            <div class="flex flex-wrap justify-center bg-white rounded-lg w-auto ">
+                <div class="flex flex-col items-center px-5 py-7 mx-5">
                     <ImageInput />
                     <Input heading="Event Title" />
                     <DateInput heading="Date" />
@@ -37,7 +37,7 @@ const AddEventForm = () => {
 
                 </div>
 
-                <div class=" flex  flex-col items-center px-5 py-7 mx-5 ">
+                <div class=" flex  flex-col  px-5 py-7 mx-5 ">
                     <Input heading="Price" />
                     <DropdownInput events={monthOptions} heading="Ticket Link" />
                     <DropdownInput events={monthOptions} heading="Popular Events" />
