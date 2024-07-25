@@ -1,9 +1,9 @@
 import React from "react";
-import Card from "./Card";
-import WelcomeMsg from "./WelcomeMsg";
-import Filter from "./Filter";
-import Table from "./Table";
-import Sidebar from "./Sidebar";
+import Card from "../Components/Card";
+import WelcomeMsg from "../Components/WelcomeMsg";
+import Filter from "../Components/Filter";
+import Table from "../Components/Table";
+import Sidebar from "../Components/Sidebar";
 
 const cardData = [
     {

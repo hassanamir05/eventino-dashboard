@@ -1,42 +1,37 @@
 import React from "react";
-import WelcomeMsg from "./WelcomeMsg";
-import SearchBox from './SearchBox'
-import Table from "./Table";
-import Filter from "./Filter";
-import AddEventForm from "./addEventForm";
-import DateInput from "./DateInput";
+import WelcomeMsg from "../Components/WelcomeMsg";
+import SearchBox from '../Components/SearchBox'
+import Table from "../Components/Table";
+import Filter from "../Components/Filter";
+import AddOrganiserForm from "../Components/addOrganiserForm";
+import DateInput from "../Components/DateInput";
+
 
 const eventData = [
     {
-        title: "Atif Aslam",
-        venue: "6096 Marjolaine Landing",
-        region: "Lorem Ipsum",
-        dateTime: "12.09.2019 - 12.53 PM",
-        price: "RS1322",
-        mapLocation: "map loation",
-        description: "Lorem Ipsum",
-        status: ""
+        organiserName: "Event 1",
+        availability: "01.10.2020 - 10.30 AM",
+        contactNumber: "+92 123 456 789",
+        mapLocation: "map location",
+        about: "lorem ipsum",
+        status: "",
     },
     {
-        title: "Event 2",
-        venue: "Venue 2",
-        region: "Region 2",
-        dateTime: "01.10.2020 - 10.30 AM",
-        price: "Rs2321",
-        mapLocation: "celebrity Event",
-        description: "Description 2",
-        status: ""
+        organiserName: "Event 2",
+        availability: "01.10.2020 - 10.30 AM",
+        contactNumber: "+92 987 654 321",
+        mapLocation: "map location",
+        about: "lorem ipsum",
+        status: "",
     },
 ];
 
 const columns = [
-    { label: "Title", accessor: "title" },
-    { label: "Date - Time", accessor: "dateTime" },
-    { label: "Venue", accessor: "venue" },
-    { label: "Region", accessor: "region" },
+    { label: "Organiser Name", accessor: "organiserName" },
+    { label: "Availabilty", accessor: "availability" },
+    { label: "Contact Number", accessor: "contactNumber" },
     { label: "Map Location", accessor: "mapLocation" },
-    { label: "Price", accessor: "price" },
-    { label: "Description", accessor: "description" },
+    { label: "About", accessor: "about" },
     {
         label: "",
         accessor: "status",
@@ -73,16 +68,16 @@ const monthOptions = [
     "December"
 ];
 
-const AllEvents = () => {
+const EventOrganizer = () => {
     return (
-        <div className="flex flex-col py-10 px-10 w-full  overflow-scroll overflow-x-hidden h-screen bg-backgroundColor">
+        <div className="flex flex-col py-10 px-10 w-full  overflow-scroll overflow-x-hidden h-screen  bg-backgroundColor">
             <WelcomeMsg username="Hassan" message="Here’s what’s happening with your store today." />
             <SearchBox />
-            <AddEventForm title="Add New Celebrity Event" />
+            <AddOrganiserForm title="Add New Organiser" />
             <div>
                 <div className="flex flex-col bg-white border-0 rounded-md p-5 py-10 my-5">
                     <div className="flex justify-between">
-                        <h1 className="text-3xl font-bold" style={{ fontFamily: 'Nunito Sans, sans-serif' }}>Celebrity Events</h1>
+                        <h1 className="text-3xl font-bold" style={{ fontFamily: 'Nunito Sans, sans-serif' }}>Organiser Details</h1>
                         <div className="filters flex space-x-4 max-h-10">
                             <Filter options={filterOptions} />
                             <Filter options={monthOptions} />
@@ -97,4 +92,4 @@ const AllEvents = () => {
     );
 };
 
-export default AllEvents;
+export default EventOrganizer;

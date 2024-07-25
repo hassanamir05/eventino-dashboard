@@ -1,8 +1,8 @@
 import React from "react";
-import Dashboard from './Components/Dashboard';
-import CelebrityEvent from "./Components/CelebrityEvent";
-import AllEvents from "./Components/allEvents";
-import EventOrganizer from "./Components/EventOrganizer";
+import Dashboard from "./Sections/Dashboard";
+import CelebrityEvent from "./Sections/allEvents";
+import AllEvents from "./Sections/allEvents";
+import EventOrganizer from "./Sections/EventOrganizer"
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./Layout/Applayout";
 import WelcomeMsg from "./Components/WelcomeMsg";

@@ -1,10 +1,11 @@
 import React from "react";
-import WelcomeMsg from "./WelcomeMsg";
-import SearchBox from './SearchBox'
-import Table from "./Table";
-import Filter from "./Filter";
-import AddEventForm from "./addEventForm";
-import DateInput from "./DateInput";
+import WelcomeMsg from "../Components/WelcomeMsg";
+import SearchBox from '../Components/SearchBox'
+import Table from "../Components/Table";
+import Filter from "../Components/Filter";
+import AddEventForm from "../Components/addEventForm";
+import DateInput from "../Components/DateInput";
+
 
 const eventData = [
     {
@@ -78,7 +79,7 @@ const CelebrityEvents = () => {
             <div>
                 <div className="flex flex-col bg-white border-0 rounded-md p-5 py-10 my-5">
                     <div className="flex justify-between">
-                        <h1 className="text-3xl font-bold" style={{ fontFamily: 'Nunito Sans, sans-serif' }}>All Events Details</h1>
+                        <h1 className="text-3xl font-bold" style={{ fontFamily: 'Nunito Sans, sans-serif' }}>Celebrity Events</h1>
                         <div className="filters flex space-x-4 max-h-10">
                             <Filter options={filterOptions} />
                             <Filter options={monthOptions} />
@@ -89,7 +90,7 @@ const CelebrityEvents = () => {
                     </div>
                 </div>
             </div>
-            <AddEventForm title="Add Events Details" />
+            <AddEventForm title="Add New Celebrity Event" />
         </div>
     );
 };
