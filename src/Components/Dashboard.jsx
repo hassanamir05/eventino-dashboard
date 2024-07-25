@@ -141,12 +141,12 @@ const Dashboard = () => {
     return (
 
 
-        <div className="bg-backgroundColor py-10 px-5 w-full">
-            <WelcomeMsg />
-            <div className=" flex h-auto flex-wrap items-center justify-center">
+        <div className="bg-backgroundColor py-10 px-5 w-full  overflow-scroll overflow-x-hidden  h-screen">
+            <WelcomeMsg username="Hassan" message="Here’s what’s happening with your store today." />
+            <div className="flex h-auto flex-wrap items-center justify-center">
                 {
-                    cardData.map((card) => {
-                        return <Card icon={card.icon} title={card.title} number={card.number} change={card.change} className="flex-grow" />
+                    cardData.map((card, index) => {
+                        return <Card key={index} icon={card.icon} title={card.title} number={card.number} change={card.change} className="flex-grow" />
                     })
                 }
             </div>

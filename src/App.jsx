@@ -5,6 +5,7 @@ import AllEvents from "./Components/allEvents";
 import EventOrganizer from "./Components/EventOrganizer";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./Layout/Applayout";
+import WelcomeMsg from "./Components/WelcomeMsg";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -30,7 +31,9 @@ const App = () => {
         },
         {
           path: '*',
-          element: <h1>No Such path found!</h1>
+          element: <div className="mt-10 ml-8">
+            <WelcomeMsg username="Hassan" message="No such path exist!" />
+          </div>
         }
       ]
     },

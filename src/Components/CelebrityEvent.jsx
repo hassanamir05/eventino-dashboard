@@ -75,8 +75,8 @@ const monthOptions = [
 
 const AllEvents = () => {
     return (
-        <div className="flex flex-col py-10 px-10 w-full min-h-auto bg-backgroundColor">
-            <WelcomeMsg />
+        <div className="flex flex-col py-10 px-10 w-full  overflow-scroll overflow-x-hidden h-screen bg-backgroundColor">
+            <WelcomeMsg username="Hassan" message="Here’s what’s happening with your store today." />
             <SearchBox />
             <AddEventForm title="Add New Celebrity Event" />
             <div>

@@ -7,7 +7,7 @@ const AppLayout = () => {
         <div className="flex flex-row">
             <Sidebar />
             <div className="flex flex-col w-full h-screen ml-[230px] ">
-                <Appbar />
+                <Appbar email="admin@gmail.com" />
                 <Outlet />
             </div>
         </div>
