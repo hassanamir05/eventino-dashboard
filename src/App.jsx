@@ -1,6 +1,6 @@
 import React from "react";
 import Dashboard from "./Sections/Dashboard";
-import CelebrityEvent from "./Sections/allEvents";
+import CelebrityEvent from "./Sections/CelebrityEvent";
 import AllEvents from "./Sections/allEvents";
 import EventOrganizer from "./Sections/EventOrganizer"
 import { createBrowserRouter, RouterProvider } from "react-router-dom";

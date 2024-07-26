@@ -10,10 +10,8 @@ const Sidebar = () => {
     };
 
     return (
-        <div className="flex flex-col h-screen w-[230px] bg-sideBarColor p-0 pb-10 min-h-screen fixed ">
-            <div className="logo top-4 mb-20 mt-4 text-center text-3xl text-white">
-                <img src="/src/assets/eventinoLogo.png" alt="Eventino Logo" className="h-auto w-[130px] block mx-auto mt-2" />
-            </div>
+        <div className="flex flex-col h-[full] w-[230px] bg-sideBarColor py-10 pb-40">
+
             <div className="flex flex-col p-0 items-center justify-between h-full ">
                 <div className="upper-portion flex flex-col p-0 ">
                     <NavLink to="/" className={({ isActive }) => isActive ? 'active text-white text-md my-3 py-2 mx-4 flex relative' : 'not-active text-white py-2 text-md my-3 mx-4 flex'}>

@@ -18,8 +18,8 @@ const Card = (props) => {
             </div>
             <div className="lower-row flex flex-row items-center">
                 <p className="mr-4 text-3xl">{props.number}</p>
-                <span
-                    className={`px-2 rounded-sm text-sm mt-1 border ${isPositive ? 'bg-green-200 text-green-500 border-green-500' : 'bg-red-200 text-red-500 border-red-500'} hover:cursor-pointer text-sm`}
+                <span style={{ fontFamily: 'Inter' }}
+                    className={`px-2 rounded-sm text-sm mt-1 border ${isPositive ? 'bg-green-200 text-green-500 border-green-300' : 'bg-red-200 text-red-500 border-red-300'} hover:cursor-pointer text-sm`}
                 >
                     {props.change}%
                     {isPositive ?

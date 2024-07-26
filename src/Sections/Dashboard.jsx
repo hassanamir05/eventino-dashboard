@@ -4,6 +4,8 @@ import WelcomeMsg from "../Components/WelcomeMsg";
 import Filter from "../Components/Filter";
 import Table from "../Components/Table";
 import Sidebar from "../Components/Sidebar";
+import LineChart from "../Components/LineChart";
+
 
 const cardData = [
     {
@@ -141,7 +143,7 @@ const Dashboard = () => {
     return (
 
 
-        <div className="bg-backgroundColor py-10 px-5 w-full  overflow-scroll overflow-x-hidden  h-screen">
+        <div className="bg-backgroundColor py-10 px-5 w-full  overflow-scroll overflow-x-hidden  h-screen pb-[100px]">
             <WelcomeMsg username="Hassan" message="Here’s what’s happening with your store today." />
             <div className="flex h-auto flex-wrap items-center justify-center">
                 {
@@ -150,6 +152,7 @@ const Dashboard = () => {
                     })
                 }
             </div>
+            <LineChart />
             <div>
                 <div className="flex flex-col bg-white border-0 rounded-md p-5 py-10 my-5">
                     <div className="flex justify-between">

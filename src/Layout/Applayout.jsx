@@ -4,10 +4,10 @@ import Appbar from "../Components/Appbar";
 
 const AppLayout = () => {
     return (
-        <div className="flex flex-row">
-            <Sidebar />
-            <div className="flex flex-col w-full h-screen ml-[230px] ">
-                <Appbar email="admin@gmail.com" />
+        <div className="flex flex-col">
+            <Appbar email="admin@gmail.com" />
+            <div className="flex flex-row w-full h-screen  ">
+                <Sidebar />
                 <Outlet />
             </div>
         </div>

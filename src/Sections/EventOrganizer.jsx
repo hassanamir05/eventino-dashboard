@@ -5,7 +5,7 @@ import Table from "../Components/Table";
 import Filter from "../Components/Filter";
 import AddOrganiserForm from "../Components/addOrganiserForm";
 import DateInput from "../Components/DateInput";
-
+import Button from "../Components/Button";
 
 const eventData = [
     {
@@ -70,9 +70,12 @@ const monthOptions = [
 
 const EventOrganizer = () => {
     return (
-        <div className="flex flex-col py-10 px-10 w-full  overflow-scroll overflow-x-hidden h-screen  bg-backgroundColor">
+        <div className="flex flex-col py-10 px-10 w-full  overflow-scroll overflow-x-hidden h-screen pb-[100px]  bg-backgroundColor">
             <WelcomeMsg username="Hassan" message="Here’s what’s happening with your store today." />
-            <SearchBox />
+            <div className="w-full my-4 flex flex-row-reverse pl-4">
+                <Button name="+Add New"></Button>
+                <SearchBox />
+            </div>
             <AddOrganiserForm title="Add New Organiser" />
             <div>
                 <div className="flex flex-col bg-white border-0 rounded-md p-5 py-10 my-5">
