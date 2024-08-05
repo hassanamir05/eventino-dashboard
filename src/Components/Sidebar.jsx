@@ -30,6 +30,14 @@ const Sidebar = () => {
                         <img className="w-6 h-auto mr-2 ml-4" src={getIconPath('event-organiser', '/event-organiser')} alt="Event Organiser Icon" />
                         <h5 className={location.pathname === '/event-organiser' ? 'active-font' : ''}>Event Organiser</h5>
                     </NavLink>
+                    <NavLink to="/personal-event" className={({ isActive }) => isActive ? 'active text-white text-md my-3 py-2 mx-4 flex relative' : 'not-active text-white py-2 text-md my-3 mx-4 flex'}>
+                        <img className="w-6 h-auto mr-2 ml-4" src={getIconPath('personal-event', '/personal-event')} alt="Personal Event Icon" />
+                        <h5 className={location.pathname === '/personal-event' ? 'active-font' : ''}>Personal Event</h5>
+                    </NavLink>
+                    <NavLink to="/report-event" className={({ isActive }) => isActive ? 'active text-white text-md my-3 py-2 mx-4 flex relative' : 'not-active text-white py-2 text-md my-3 mx-4 flex'}>
+                        <img className="w-6 h-auto mr-2 ml-4" src={getIconPath('report-event', '/report-event')} alt="Personal Event Icon" />
+                        <h5 className={location.pathname === '/report-event' ? 'active-font' : ''}>Report Event</h5>
+                    </NavLink>
                 </div>
                 <div className="lower-portion flex flex-col p-0 ">
                     <hr className="w-[94%] border" />

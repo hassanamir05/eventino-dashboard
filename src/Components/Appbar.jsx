@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaRegUserCircle } from "react-icons/fa";
 
 const Appbar = (props) => {
     return (
@@ -8,12 +9,16 @@ const Appbar = (props) => {
                 <img src="/src/assets/eventinoLogo.png" alt="Eventino Logo" className="h-auto w-[130px] block mx-auto mt-2" />
             </div>
 
-            <select
-                name="admin-email"
-                id="admin-email"
-                className="bg-transparent text-white text-md hover:cursor-pointer focus:outline-none focus:border-0 mt-5">
-                <option value="email">{props.email}</option>
-            </select>
+            <div className="relative inline-block mt-5">
+                <i class="fa-regular fa-circle-user text-xl text-white pt-1 mr-1"></i>
+                <select
+                    name="admin-email"
+                    id="admin-email"
+                    className="bg-transparent text-white text-md hover:cursor-pointer focus:outline-none focus:border-0"
+                >
+                    <option value="email">{props.email}</option>
+                </select>
+            </div>
         </div>
     );
 }

@@ -5,6 +5,7 @@ import AllEvents from "./Sections/allEvents";
 import EventOrganizer from "./Sections/EventOrganizer"
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./Layout/Applayout";
+import Setting from "./Sections/Setting";
 import WelcomeMsg from "./Components/WelcomeMsg";
 
 const App = () => {
@@ -28,6 +29,10 @@ const App = () => {
         {
           path: 'event-organiser',
           element: <EventOrganizer />
+        },
+        {
+          path: 'settings',
+          element: <Setting />
         },
         {
           path: '*',

@@ -5,7 +5,7 @@ import Appbar from "../Components/Appbar";
 const AppLayout = () => {
     return (
         <div className="flex flex-col">
-            <Appbar email="admin@gmail.com" />
+            <Appbar email="admin@gmail.com" iconSrc="<i class='fa-solid fa-bars'></i>" />
             <div className="flex flex-row w-full h-screen  ">
                 <Sidebar />
                 <Outlet />

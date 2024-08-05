@@ -1,25 +1,12 @@
-#chartjs-tooltip {
-  position: absolute;
-  background: white;
-  border: 2px solid #4d74ff;
-  border-radius: 8px;
-  pointer-events: none;
-  transform: translate(-50%, 0);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  padding: 10px;
-  margin-top: 10px;
+.chartjs-tooltip {
+  background: #fff !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  color: #000 !important;
 }
 
-#chartjs-tooltip .tooltip-header {
-  font-size: 16px;
-  font-weight: bold;
-  color: #000;
-  margin-bottom: 5px;
-  font-family: "Inter";
-}
-
-#chartjs-tooltip .tooltip-body {
-  font-size: 18px;
-  font-weight: normal;
-  color: #4d74ff;
+.chartjs-tooltip .chartjs-tooltip-key {
+  border-radius: 50% !important;
+  width: 10px !important;
+  height: 10px !important;
 }
