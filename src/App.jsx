@@ -7,6 +7,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./Layout/Applayout";
 import Setting from "./Sections/Setting";
 import WelcomeMsg from "./Components/WelcomeMsg";
+import Signin from "./Sections/Signin";
+
+
 
 const App = () => {
   const router = createBrowserRouter([
@@ -42,6 +45,10 @@ const App = () => {
         }
       ]
     },
+    {
+      path: 'signin',
+      element: <Signin />
+    }
 
   ]);
 

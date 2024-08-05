@@ -1,0 +1,10 @@
+.custom-checkbox {
+  width: 15px;
+  height: 15px;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  width: 100%;
+  height: 100%;
+  accent-color: #4ca1eb;
+}
