@@ -31,13 +31,13 @@ const eventData = [
 ];
 
 const columns = [
-    { label: "Title", accessor: "title" },
-    { label: "Date - Time", accessor: "dateTime" },
-    { label: "Venue", accessor: "venue" },
-    { label: "Region", accessor: "region" },
-    { label: "Map Location", accessor: "mapLocation" },
-    { label: "Price", accessor: "price" },
-    { label: "Description", accessor: "description" },
+    { label: "Title", accessor: "title", width: '15%' },
+    { label: "Date - Time", accessor: "dateTime", width: '18%' },
+    { label: "Venue", accessor: "venue", width: '15%' },
+    { label: "Region", accessor: "region", width: '15%' },
+    { label: "Map Location", accessor: "mapLocation", width: '12%' },
+    { label: "Price", accessor: "price", width: '10%' },
+    { label: "Description", accessor: "description", width: '15%' },
     {
         label: "",
         accessor: "status",

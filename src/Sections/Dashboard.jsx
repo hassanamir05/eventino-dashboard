@@ -1,114 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../Components/Card";
 import WelcomeMsg from "../Components/WelcomeMsg";
 import Filter from "../Components/Filter";
 import Table from "../Components/Table";
-import Sidebar from "../Components/Sidebar";
 import LineChart from "../Components/LineChart";
-
-
-const cardData = [
-    {
-        icon: '/src/assets/Icons/plus.png',
-        title: 'Total Event Count',
-        number: '508K',
-        change: -28.4
-    },
-    {
-        icon: '/src/assets/Icons/organiser.png',
-        title: 'Total Organiser Count',
-        number: '100K',
-        change: 28.4
-    },
-    {
-        icon: '/src/assets/Icons/celebrity.png',
-        title: 'Total Celebrity Count',
-        number: '300K',
-        change: -28.4
-    },
-    {
-        icon: '/src/assets/Icons/user.png',
-        title: 'Personal Event Count',
-        number: '1000',
-        change: 28.4
-    },
-]
-
-const eventData = [
-    {
-        title: "Atif Aslam",
-        venue: "6096 Marjolaine Landing",
-        region: "Lorem Ipsum",
-        dateTime: "12.09.2019 - 12.53 PM",
-        category: "Celebrity Event",
-        description: "Lorem Ipsum",
-        status: "Free",
-        statusColor: "bg-freeColor"
-    },
-    {
-        title: "Event 2",
-        venue: "Venue 2",
-        region: "Region 2",
-        dateTime: "01.10.2020 - 10.30 AM",
-        category: "Music",
-        description: "Description 2",
-        status: "Paid",
-        statusColor: "bg-paidColor"
-    },
-    {
-        title: "Atif Aslam",
-        venue: "6096 Marjolaine Landing",
-        region: "Lorem Ipsum",
-        dateTime: "12.09.2019 - 12.53 PM",
-        category: "Celebrity Event",
-        description: "Lorem Ipsum",
-        status: "Free",
-        statusColor: "bg-freeColor"
-    },
-    {
-        title: "Event 2",
-        venue: "Venue 2",
-        region: "Region 2",
-        dateTime: "01.10.2020 - 10.30 AM",
-        category: "Music",
-        description: "Description 2",
-        status: "Paid",
-        statusColor: "bg-paidColor"
-    },
-    {
-        title: "Atif Aslam",
-        venue: "6096 Marjolaine Landing",
-        region: "Lorem Ipsum",
-        dateTime: "12.09.2019 - 12.53 PM",
-        category: "Celebrity Event",
-        description: "Lorem Ipsum",
-        status: "Free",
-        statusColor: "bg-freeColor"
-    },
-    {
-        title: "Event 2",
-        venue: "Venue 2",
-        region: "Region 2",
-        dateTime: "01.10.2020 - 10.30 AM",
-        category: "Music",
-        description: "Description 2",
-        status: "Paid",
-        statusColor: "bg-paidColor"
-    },
-];
+import { getDashboardService, allEventDetailsService } from "../API/api";
+import Modal from '../Components/Modal';
+import EventForm from "../Components/EventForm";
 
 const columns = [
-    { label: "Title", accessor: "title" },
-    { label: "Venue", accessor: "venue" },
-    { label: "Region", accessor: "region" },
-    { label: "Date - Time", accessor: "dateTime" },
-    { label: "Category", accessor: "category" },
-    { label: "Description", accessor: "description" },
+    { label: "Title", accessor: "title", width: '20%' },
+    { label: "Venue", accessor: "location", width: '13.5%' },
+    { label: "Region", accessor: "region", width: '15%' },
+    { label: "Date - Time", accessor: "dateTime", width: '20%' },
+    { label: "Category", accessor: "category_name", width: '13.5%' },
+    { label: "Description", accessor: "description", width: '18%' },
     {
         label: "Status",
         accessor: "status",
         render: (status, event) => (
-            <span className={`text-white py-1 px-5 rounded-full text-sm mr-2 ${eventData.statusColor}`}>{status}</span>
+            <span className={`text-white py-1 px-5 rounded-full text-sm mr-2 ${getStatusColor(event.price)}`}>{status}</span>
         )
     },
 ];
@@ -138,19 +49,84 @@ const monthOptions = [
     "December"
 ];
 
-
 const Dashboard = () => {
+    const [dashboardData, setDashboardData] = useState(null);
+    const [eventData, setEventData] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(true); // Add state for modal visibility
+
+    useEffect(() => {
+        const fetchDashboardData = async () => {
+            try {
+                const data = await getDashboardService();
+
+                if (data.status !== 200) {
+                    throw new Error(`Error: Status code ${data.status}`);
+                }
+
+                setDashboardData(data);
+            } catch (error) {
+                console.error(error);
+                setDashboardData({
+                    totolEventCount: 0,
+                    totolOrganizerCount: 0,
+                    totolCelebrityCount: 0,
+                    totolPersonalEventCount: 0
+                });
+            }
+        };
+
+        const fetchEventData = async () => {
+            try {
+                const data = await allEventDetailsService();
+
+                if (data.status !== 200) {
+                    throw new Error(`Error: Status code ${data.status}`);
+                }
+
+                setEventData(data.result);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchDashboardData();
+        fetchEventData();
+    }, []);
+
+    const cardData = [
+        {
+            icon: '/src/assets/Icons/plus.png',
+            title: 'Total Event Count',
+            number: dashboardData ? dashboardData.totolEventCount : 0,
+            change: -28.4
+        },
+        {
+            icon: '/src/assets/Icons/organiser.png',
+            title: 'Total Organizer Count',
+            number: dashboardData ? dashboardData.totolOrganizerCount : 0,
+            change: 28.4
+        },
+        {
+            icon: '/src/assets/Icons/celebrity.png',
+            title: 'Total Celebrity Count',
+            number: dashboardData ? dashboardData.totolCelebrityCount : 0,
+            change: -28.4
+        },
+        {
+            icon: '/src/assets/Icons/user.png',
+            title: 'Personal Event Count',
+            number: dashboardData ? dashboardData.totolPersonalEventCount : 0,
+            change: 28.4
+        },
+    ];
+
     return (
-
-
-        <div className="bg-backgroundColor py-10 px-5 w-full  overflow-scroll overflow-x-hidden  h-screen pb-[100px]">
+        <div className="bg-backgroundColor py-10 px-5 w-full overflow-scroll overflow-x-hidden h-screen pb-[100px]">
             <WelcomeMsg username="Hassan" message="Here’s what’s happening with your store today." />
             <div className="flex h-auto flex-wrap items-center justify-center">
-                {
-                    cardData.map((card, index) => {
-                        return <Card key={index} icon={card.icon} title={card.title} number={card.number} change={card.change} className="flex-grow" />
-                    })
-                }
+                {cardData.map((card, index) => (
+                    <Card key={index} icon={card.icon} title={card.title} number={card.number} change={card.change} className="flex-grow" />
+                ))}
             </div>
             <LineChart />
             <div>
@@ -163,13 +139,17 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <div className="overflow-x-auto mt-6">
-                        <Table columns={columns} eventData={eventData} />
+                        {eventData.length > 0 ? (
+                            <Table columns={columns} eventData={eventData} />
+                        ) : (
+                            <p>Failed to fetch data from the api.</p>
+                        )}
                     </div>
                 </div>
             </div>
+            <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen} children={<EventForm />} />
         </div>
-
     );
-}
+};
 
 export default Dashboard;

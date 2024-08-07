@@ -7,6 +7,7 @@ const TableHeader = ({ columns }) => {
                 <td
                     key={index}
                     className={`py-3 px-6 font-[600] text-left ${index === 0 ? 'rounded-tl-2xl rounded-bl-2xl' : ''} ${index === columns.length - 1 ? 'rounded-tr-2xl rounded-br-2xl' : ''}`}
+                    style={{ width: column.width }}
                 >
                     {column.label}
                 </td>

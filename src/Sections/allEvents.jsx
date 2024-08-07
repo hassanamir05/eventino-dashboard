@@ -15,8 +15,9 @@ const eventData = [
         dateTime: "12.09.2019 - 12.53 PM",
         category: "Celebrity Event",
         description: "Lorem Ipsum",
-        status: "Free",
-        statusColor: "bg-freeColor"
+        activeDisable: <button>Testing</button>,
+        status: "",
+
     },
     {
         title: "Event 2",
@@ -25,23 +26,26 @@ const eventData = [
         dateTime: "01.10.2020 - 10.30 AM",
         category: "Music",
         description: "Description 2",
-        status: "Paid",
-        statusColor: "bg-paidColor"
+        activeDisable: <input type="checkbox" />,
+        status: "",
     },
 ];
 
 const columns = [
-    { label: "Title", accessor: "title" },
-    { label: "Venue", accessor: "venue" },
-    { label: "Region", accessor: "region" },
-    { label: "Date - Time", accessor: "dateTime" },
-    { label: "Category", accessor: "category" },
-    { label: "Description", accessor: "description" },
+    { label: "Title", accessor: "title", width: '15%' },
+    { label: "Venue", accessor: "venue", width: '20%' },
+    { label: "Region", accessor: "region", width: '10%' },
+    { label: "Date - Time", accessor: "dateTime", width: '18%' },
+    { label: "Category", accessor: "category", width: '10%' },
+    { label: "Description", accessor: "description", width: '15%' },
+    { label: "Active/Disable", accessor: "activeDisable", width: '12%' },
     {
-        label: "Status",
+        label: "",
         accessor: "status",
         render: (status, event) => (
-            <span className={`text-white py-1 px-5 rounded-full text-sm mr-2 ${eventData.statusColor}`}>{status}</span>
+            <span className={`text-white py-1 px-5 rounded-full text-sm mr-2 ${eventData.statusColor}`
+            } > {status}</ span>
+
         )
     },
 ];
