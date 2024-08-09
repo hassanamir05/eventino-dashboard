@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
 
-const Table = ({ columns, eventData }) => {
+const Table = ({ columns, eventData, handleEditClick, handleDeleteClick, event }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const totalPages = Math.ceil(eventData.length / itemsPerPage);
@@ -69,7 +69,7 @@ const Table = ({ columns, eventData }) => {
                     </thead>
                     <tbody className="text-gray-600 text-sm font-light">
                         {currentItems.map((event, index) => (
-                            <TableRow key={index} event={event} columns={columns} />
+                            <TableRow key={index} event={event} columns={columns} handleEditClick={handleEditClick} handleDeleteClick={handleDeleteClick} />
                         ))}
                     </tbody>
                 </table>

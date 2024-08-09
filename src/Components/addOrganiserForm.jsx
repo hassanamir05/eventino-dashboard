@@ -6,6 +6,8 @@ import ImageInput from "./ImageUploadInput";
 import DateInput from "./DateInput";
 import Button from "./Button";
 import Heading from "./Heading";
+import DateTimeInput from "./DateTimeInput";
+
 
 const monthOptions = [
     "Month",
@@ -31,7 +33,7 @@ const AddOrganiserForm = (props) => {
                 <div class="flex flex-col items-center  py-7 mx-5 w-auto">
                     <ImageInput />
                     <Input heading="Organiser Name" />
-                    <DateInput heading="Availability" />
+                    <DateTimeInput heading="Availability" />
                     <Input heading="Contact Number" />
                 </div>
 

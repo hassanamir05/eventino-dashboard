@@ -1,0 +1,30 @@
+.switch {
+  margin-left: 25px;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background-color: grey;
+  border-color: linear-gradient(167.96deg, #8a54fe 0%, #19dedb 100%);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.switch.on {
+  background: linear-gradient(167.96deg, #8a54fe 0%, #19dedb 100%);
+}
+
+.switch-handle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  transition: left 0.3s ease;
+}
+
+.switch.on .switch-handle {
+  left: 22px;
+}

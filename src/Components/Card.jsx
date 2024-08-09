@@ -18,8 +18,8 @@ const Card = (props) => {
                 <p className="mr-4 text-3xl">{props.number}</p>
 
 
-                {/* span to show chnage*/}
-                {/* <span style={{ fontFamily: 'Inter' }}
+
+                <span style={{ fontFamily: 'Inter' }}
                     className={`px-2 rounded-sm text-sm mt-1 border ${isPositive ? 'bg-green-200 text-green-500 border-green-300' : 'bg-red-200 text-red-500 border-red-300'} hover:cursor-pointer text-sm`}
                 >
                     {props.change}%
@@ -27,7 +27,7 @@ const Card = (props) => {
                         <NorthEastIcon style={{ fontSize: '17px', marginBottom: "3px", marginLeft: "2px" }} /> :
                         <SouthEastIcon style={{ fontSize: '17px', marginBottom: "3px", marginLeft: "2px" }} />
                     }
-                </span> */}
+                </span>
 
 
             </div>

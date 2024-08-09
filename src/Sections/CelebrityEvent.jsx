@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import WelcomeMsg from "../Components/WelcomeMsg";
 import SearchBox from '../Components/SearchBox'
 import Table from "../Components/Table";
 import Filter from "../Components/Filter";
-import AddEventForm from "../Components/addEventForm";
 import DateInput from "../Components/DateInput";
 import Button from "../Components/Button";
+import AddCelebrityEventForm from "../Components/addCelebrityEventForm";
+import AddCelebrityForm from "../Components/addCelebrityForm";
 
 const eventData = [
     {
@@ -75,29 +76,60 @@ const monthOptions = [
 ];
 
 const CelebrityEvent = () => {
+
+
+    const [showAddForm, setShowAddForm] = useState('table')
+
+
+    useEffect(() => { }, [])
+
+    const showCelebrityForm = () => {
+        setShowAddForm('')
+    }
+
+    const showCelebrityEventForm = () => {
+        setShowAddForm('celebrity-event')
+    }
+
+    const refreshForm = () => {
+        setShowAddForm('table')
+    }
+
     return (
         <div className="flex flex-col py-10 px-10 w-full  overflow-scroll overflow-x-hidden h-screen pb-[100px] bg-backgroundColor">
             <WelcomeMsg username="Hassan" message="Here’s what’s happening with your store today." />
-            <div className="w-full my-4 flex flex-row-reverse pl-4">
-                <Button name="+Add New"></Button>
-                <SearchBox />
-            </div>
-            <AddEventForm title="Add New Celebrity Event" />
-            <div>
-                <div className="flex flex-col bg-white border-0 rounded-md p-5 py-10 my-5">
-                    <div className="flex justify-between">
-                        <h1 className="text-3xl font-bold" style={{ fontFamily: 'Nunito Sans, sans-serif' }}>Celebrity Events</h1>
-                        <div className="filters flex space-x-4 max-h-10">
-                            <Filter options={filterOptions} />
-                            <Filter options={monthOptions} />
+            {
+                (showAddForm === 'table') ?
+                    <>
+
+                        <div className="w-full my-4 flex flex-row-reverse pl-4">
+                            <Button name="+Add New" onClick={showCelebrityEventForm} />
+                            <Button name="+Celebrity" onClick={showCelebrityForm} />
+                            <SearchBox />
                         </div>
-                    </div>
-                    <div className="overflow-x-auto mt-6">
-                        <Table columns={columns} eventData={eventData} />
-                    </div>
-                </div>
-            </div>
-        </div>
+
+                        <div>
+                            <div className="flex flex-col bg-white border-0 rounded-md p-5 py-10 my-5">
+                                <div className="flex justify-between">
+                                    <h1 className="text-3xl font-bold" style={{ fontFamily: 'Nunito Sans, sans-serif' }}>Celebrity Events</h1>
+                                    <div className="filters flex space-x-4 max-h-10">
+                                        <Filter options={filterOptions} />
+                                        <Filter options={monthOptions} />
+                                    </div>
+                                </div>
+                                <div className="overflow-x-auto mt-6">
+                                    <Table columns={columns} eventData={eventData} />
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                    :
+                    (showAddForm === 'celebrity-event') ?
+                        < AddCelebrityEventForm title="Add New Celebrity Event" onClick={refreshForm} />
+                        :
+                        <AddCelebrityForm title="Add New Celebrity" onClick={refreshForm} />
+            }
+        </div >
     );
 };
 

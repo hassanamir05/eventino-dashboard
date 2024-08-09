@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaCalendarAlt } from 'react-icons/fa';
 
-const DateInput = ({ heading, value, onChange, name }) => {
+const DateTimeInput = ({ heading, value, onChange, name }) => {
     const inputRef = React.useRef(null);
 
     const handleIconClick = () => {
@@ -14,7 +14,7 @@ const DateInput = ({ heading, value, onChange, name }) => {
             <div className="w-[380px] border-2 border-gray-300 p-2 text-sm h-auto rounded-lg bg-transparent text-black flex items-center">
                 <input
                     className="w-full bg-transparent outline-none"
-                    type="date-time"
+                    type="datetime-local"
                     name={name}
                     placeholder={heading}
                     value={value}
@@ -26,4 +26,4 @@ const DateInput = ({ heading, value, onChange, name }) => {
     );
 };
 
-export default DateInput;
+export default DateTimeInput;

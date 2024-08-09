@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import './tooltip.css';
+import { VisibilityOff } from "@mui/icons-material";
 
 const LineChart = () => {
     const chartRef = useRef(null);
@@ -25,51 +26,48 @@ const LineChart = () => {
             datasets: [
                 {
                     label: "Organiser Event",
-                    data: [320, 450, 380, 420, 500],
+                    data: [520, 450, 580, 420, 500],
                     fill: true,
-                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderColor: "#4DBF5D",
+                    pointBackgroundColor: "#4DBF5D",
                     backgroundColor: gradient1,
-                    borderWidth: 3,
+                    borderWidth: 4,
                     tension: 0.4,
-                    pointRadius: 3,
+                    pointRadius: 0,
                     pointHoverRadius: 9,
-                    pointHoverBorderWidth: 3,
-                    pointBorderWidth: 0,
-                    pointBackgroundColor: "rgba(75, 192, 192, 1)",
-                    pointBorderColor: "#fff",
-
+                    hoverBackgroundColor: "#4DBF5D",
+                    hoverBorderColor: '#fff',
+                    hoverBorderWidth: 5,
                 },
                 {
                     label: "Celebrity Event",
-                    data: [500, 600, 700, 650, 750],
+                    data: [400, 420, 560, 470, 560],
                     fill: true,
-                    borderColor: "rgba(153, 102, 255, 1)",
+                    borderColor: "#506DF9",
+                    pointBackgroundColor: "#506DF9",
                     backgroundColor: gradient2,
-                    borderWidth: 3,
+                    borderWidth: 4,
                     tension: 0.4,
-                    pointRadius: 3,
+                    pointRadius: 0,
                     pointHoverRadius: 9,
-                    pointHoverBorderWidth: 3,
-                    pointBorderWidth: 0,
-                    pointBackgroundColor: "rgba(153, 102, 255, 1)",
-                    pointBorderColor: "#fff",
-
+                    hoverBackgroundColor: "#506DF9",
+                    hoverBorderColor: '#fff',
+                    hoverBorderWidth: 5,
                 },
                 {
                     label: "Personal Event",
-                    data: [150, 130, 270, 250, 350],
+                    data: [350, 380, 450, 400, 540],
                     fill: true,
-                    borderColor: "rgba(255, 159, 64, 1)",
+                    borderColor: "#864DBF",
+                    pointBackgroundColor: "#864DBF",
                     backgroundColor: gradient3,
-                    borderWidth: 3,
+                    borderWidth: 4,
                     tension: 0.4,
-                    pointRadius: 3,
+                    pointRadius: 0,
                     pointHoverRadius: 9,
-                    pointHoverBorderWidth: 3,
-                    pointBorderWidth: 0,
-                    pointBackgroundColor: "rgba(255, 159, 64, 1)",
-                    pointBorderColor: "#fff",
-
+                    hoverBackgroundColor: "#864DBF",
+                    hoverBorderColor: '#fff',
+                    hoverBorderWidth: 5,
                 }
             ],
         };
@@ -80,19 +78,24 @@ const LineChart = () => {
             options: {
                 interaction: {
                     intersect: false,
-                    mode: 'index',
+                    mode: 'nearest',
                 },
                 plugins: {
                     tooltip: {
                         backgroundColor: '#fff',
                         titleColor: '#000',
                         bodyColor: '#000',
-                        borderColor: '#ccc',
-                        borderWidth: 1,
+                        borderColor: '#506DF9',
+                        borderWidth: 2,
+                        padding: 15,
                         displayColors: true,
                         usePointStyle: true,
-                        pointStyle: 'circle',
                         callbacks: {
+                            label: function (context) {
+                                const label = context.dataset.label || '';
+                                const value = context.raw || '';
+                                return `${label}: ${value} Participants`;
+                            },
                             labelColor: function (context) {
                                 return {
                                     borderColor: context.dataset.borderColor,
@@ -105,17 +108,31 @@ const LineChart = () => {
                             }
                         },
                         titleFont: {
-                            size: 16,
-                            weight: 'bold'
+                            size: 0,
                         },
                         bodyFont: {
-                            size: 14
+                            size: 16,
+                            padding: 2
                         },
                     },
                     legend: {
                         labels: {
-                            usePointStyle: true,
-                            pointStyle: 'circle'
+                            usePointStyle: false,
+                            generateLabels: function (chart) {
+                                return chart.data.datasets.map((dataset, i) => {
+                                    return {
+                                        text: dataset.label,
+                                        fillStyle: dataset.borderColor,
+                                        strokeStyle: dataset.borderColor,
+                                        lineCap: 'line',
+                                        lineDash: [],
+                                        lineDashOffset: 0,
+                                        lineJoin: 'line',
+                                        lineWidth: 1,
+                                        datasetIndex: i
+                                    };
+                                });
+                            }
                         }
                     }
                 }

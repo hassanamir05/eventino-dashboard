@@ -1,27 +1,35 @@
 import React from 'react';
-import Button from '../Components/Button'
+import ReactDOM from 'react-dom';
+import { cloneElement } from 'react';
 
-
-const Modal = ({ isOpen, setIsOpen, children }) => {
+const Modal = ({ isOpen, setIsOpen, children, event }) => {
     if (!isOpen) return null;
 
-    return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center pt-10">
+    const enhancedChildren = React.Children.map(children, child =>
+        cloneElement(child, { isOpen, setIsOpen, event })
+    );
 
-            <div className="bg-white rounded-lg shadow-lg py-12 px-20 relative ">
-                <Button
-                    onClick={() => {
-                        console.log('clicking the close button in modal');
-                        console.log('isopen : ', isOpen)
-                        setIsOpen(false)
-                        console.log('isopen : ', isOpen)
-                    }}
-                    name="X"
-                    className="absolute top-2 right-2 text-white bg-backgroundColor px-2 text-2xl pb-1 rounded-[50%] "
-                />
-                {children}
+    return ReactDOM.createPortal(
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
+            <div className="bg-white py-6 rounded-lg shadow-lg scroll-m-0 max-h-[700px] h-auto w-auto overflow-auto  relative">
+                <style>
+                    {`
+                        .modal-content::-webkit-scrollbar {
+                            display: none;
+                        }
+                        
+                        .modal-content {
+                            -ms-overflow-style: none;  
+                            scrollbar-width: none;   
+                        }
+                    `}
+                </style>
+                <div className="modal-content">
+                    {enhancedChildren}
+                </div>
             </div>
-        </div >
+        </div>,
+        document.body
     );
 };
 

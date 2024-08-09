@@ -1,17 +1,29 @@
 import React from "react";
-import EventForm from "./EventForm";
-const TableRow = ({ event, columns }) => {
+import Switch from "./Switch";
+
+const TableRow = ({ columns, handleEditClick, handleDeleteClick, event }) => {
     const getStatusColor = (price) => {
-        return price === null || price === 0 ? "bg-freeColor" : "bg-paidColor";
+        const priceNumber = parseFloat(price);
+        return (isNaN(priceNumber) || priceNumber === 0) ? "bg-freeColor" : "bg-paidColor";
     };
 
     const getStatusText = (price) => {
-        return price === null || price === 0 ? "Free" : "Paid";
+        const priceNumber = parseFloat(price);
+        return (isNaN(priceNumber) || priceNumber === 0) ? "Free" : "Paid";
     };
 
-    const handleEditClick = (id) => {
-        console.log(`Edit event with ID: ${id}`);
+    const handleEdit = () => {
+        console.log('data of the event selected : ', event)
+        handleEditClick(event);
     };
+
+
+    const handleDelete = () => {
+        console.log('data of the event selected : ', event)
+        handleDeleteClick(event.id)
+    }
+
+
 
     return (
         <tr className="border-b border-gray-200 hover:cursor-pointer">
@@ -33,11 +45,11 @@ const TableRow = ({ event, columns }) => {
                             </span>
                             <button
                                 className="w-4 transform hover:cursor-pointer hover:scale-110 mr-5"
-                                onClick={() => handleEditClick(event.id)}
+                                onClick={handleEdit}
                             >
                                 <i className="fa-regular fa-pen-to-square text-lg px-2"></i>
                             </button>
-                            <button className="w-4 mr-2 transform hover:cursor-pointer hover:scale-110 font-medium">
+                            <button className="w-4 mr-2 transform hover:cursor-pointer hover:scale-110 font-medium" onClick={handleDelete}>
                                 <i className="fa-solid fa-trash text-lg px-3"></i>
                             </button>
                         </div>
@@ -46,6 +58,8 @@ const TableRow = ({ event, columns }) => {
                             <div>{event.event_date}</div>
                             <div>{event.event_time}</div>
                         </div>
+                    ) : column.accessor === 'activeDisable' ? (
+                        <Switch status={event.status} />
                     ) : (
                         event[column.accessor]
                     )}

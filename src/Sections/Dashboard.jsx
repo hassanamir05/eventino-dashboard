@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../Components/Card";
 import WelcomeMsg from "../Components/WelcomeMsg";
 import Filter from "../Components/Filter";
 import Table from "../Components/Table";
 import LineChart from "../Components/LineChart";
-import { getDashboardService, allEventDetailsService } from "../API/api";
+import { getDashboardService, allEventDetailsService, updateAllEventService, deleteAllEventService } from "../API/api";
 import Modal from '../Components/Modal';
 import EventForm from "../Components/EventForm";
 
@@ -52,17 +52,17 @@ const monthOptions = [
 const Dashboard = () => {
     const [dashboardData, setDashboardData] = useState(null);
     const [eventData, setEventData] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(true); // Add state for modal visibility
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentEvent, setCurrentEvent] = useState(null);
+    const [refreshPage, setRefreshPage] = useState('')
+
 
     useEffect(() => {
+
         const fetchDashboardData = async () => {
             try {
                 const data = await getDashboardService();
-
-                if (data.status !== 200) {
-                    throw new Error(`Error: Status code ${data.status}`);
-                }
-
+                if (data.status !== 200) throw new Error(`Error: Status code ${data.status}`);
                 setDashboardData(data);
             } catch (error) {
                 console.error(error);
@@ -78,20 +78,71 @@ const Dashboard = () => {
         const fetchEventData = async () => {
             try {
                 const data = await allEventDetailsService();
-
-                if (data.status !== 200) {
-                    throw new Error(`Error: Status code ${data.status}`);
-                }
-
+                if (data.status !== 200) throw new Error(`Error: Status code ${data.status}`);
                 setEventData(data.result);
             } catch (error) {
                 console.log(error);
             }
         };
 
+
         fetchDashboardData();
         fetchEventData();
-    }, []);
+    }, [refreshPage]);
+
+
+
+    const handleEditClick = (data) => {
+        setCurrentEvent(data);
+        setIsModalOpen(true);
+    };
+
+
+
+    const updateEventData = async (updatedData) => {
+        try {
+            const data = await updateAllEventService(updatedData);
+
+            if (data.status !== 200) throw new Error(`Error: Status code ${data.status}`);
+
+            console.log('message from API : ', data.message)
+            console.log('data that was passed to the api : ', updatedData);
+
+            setRefreshPage();
+
+        }
+
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+    const deleteEventData = async (eventId) => {
+        try {
+
+            const response = await deleteAllEventService(eventId);
+
+            if (response.status !== 200) throw new Error(`Error: Status code ${response.status}`);
+
+
+            console.log('MEssag from the API : ', response.message);
+
+        }
+        catch (e) {
+
+        }
+    }
+
+    const handleSave = (updatedEvent) => {
+        console.log('Updated Event:', updatedEvent);
+        updateEventData(updatedEvent);
+        setIsModalOpen(false);
+    };
+
+    const handleDeleteClick = (id) => {
+        deleteEventData(id);
+    }
+
 
     const cardData = [
         {
@@ -120,6 +171,7 @@ const Dashboard = () => {
         },
     ];
 
+
     return (
         <div className="bg-backgroundColor py-10 px-5 w-full overflow-scroll overflow-x-hidden h-screen pb-[100px]">
             <WelcomeMsg username="Hassan" message="Here’s what’s happening with your store today." />
@@ -140,16 +192,21 @@ const Dashboard = () => {
                     </div>
                     <div className="overflow-x-auto mt-6">
                         {eventData.length > 0 ? (
-                            <Table columns={columns} eventData={eventData} />
+                            <Table columns={columns} eventData={eventData} handleEditClick={handleEditClick} handleDeleteClick={handleDeleteClick} />
                         ) : (
-                            <p>Failed to fetch data from the api.</p>
+                            <p>Failed to fetch data from the API.</p>
                         )}
                     </div>
                 </div>
             </div>
-            <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen} children={<EventForm />} />
+            <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen} event={currentEvent}>
+                <EventForm event={currentEvent} onSave={handleSave} isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
+            </Modal>
         </div>
     );
 };
 
 export default Dashboard;
+
+// a --> b --> c
+// a -->  --> c
